@@ -1,56 +1,41 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
-import { useState } from 'react';
-import Sub from './Sub';
-
-// spa
-// jsx문법
-// 리턴시에 하나의 dom만 리턴할 수 있다.
-// 변수 선언은 let(변수)혹은 const(상수)만 가능
-// if사용불가능->삼항연산자 가능 {a === 10 ? '10입니다' : '10아닙니다.'}
-// 조건부 렌더링{b===20&&'20입니다.'}앞에거 트루면 뒤에거 해라
-// css디자인- 내부에 적기/외부에 적기/라이브러리 사용(부트스트랩, component-styled)
 
 function App() {
-  // let number = 1;//상태값아님
-  // const [number, setNumber] = useState(2); //리액트안에 hooks라이브러리 상태값이 됨
+  const [data, setData] = useState(0);
+  const [search, setSearch] = useState(0);
 
-  // const add = () => {
-  //   setNumber(number + 1); //리엑트한테 number값 변경요청
-  //   console.log('add', number);
-  // };
-
-  // let num =5;
-  const [num, setNum] = useState(5);
-
-  console.log('App 실행됨');
-  let sample = [
-    { id: 1, name: '11' },
-    { id: 2, name: '22' },
-    { id: 3, name: '33' },
-    { id: 4, name: '44' },
-  ];
-  //다운로드받음
-  const [users, setUsers] = useState(sample); //레퍼런스 변경되어야 동작
   const download = () => {
-    // const a = sample.concat({ id: 5, name: '55' });
-    //fetch().then().then()
-    setUsers([...sample, { id: num, name: '55' }]);
-    setNum(num + 1);
+    //다운로드 받고(통신)
+    let downloadData = 5; //가정
+    setData(downloadData);
   };
-  //랜더링 시점= 상태값 변경
+  //실행시점:
+  //App() 함수가 최초 실행될 때(그림이 최초로 그려질때)
+  //상태변수가 변경될때
+  //의존리스트 관리할 수 있다.
+  useEffect(() => {
+    console.log('useEffect실행됨');
+    download();
+  }, [search]);
+
   return (
     <div>
-      {/* <h1>숫자:{number}</h1>
-      <button onClick={add}>더하기</button>
-      <Sub/>  */}
-
-      <button onClick={download}>다운로드</button>
-      {users.map((u) => (
-        <h1>
-          {u.id},{u.name}
-        </h1>
-      ))}
+      <button
+        onClick={() => {
+          setSearch(2);
+        }}
+      >
+        검색하기
+      </button>
+      <h1>데이터:{data}</h1>
+      <button
+        onClick={() => {
+          setData(data + 1);
+        }}
+      >
+        더하기
+      </button>
     </div>
   );
 }
