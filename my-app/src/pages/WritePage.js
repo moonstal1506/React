@@ -11,10 +11,10 @@ const WritePage = () => {
       <h1>글쓰기 페이지</h1>
       <from>
         <input type="text" placeholder="제목을 입력하세요" />
+        <button type="button" onClick={handleWrite}>
+          글쓰기
+        </button>
       </from>
-      <button type="button" onClick={handleWrite}>
-        글쓰기
-      </button>
     </div>
   );
 };

@@ -8,9 +8,7 @@ import WritePage from './pages/WritePage';
 function App() {
   return (
     <div>
-      <Navigation />
-      <Route path="/" exact={true} component={ListPage} />
-      <Route path="/write" exact={true} component={WritePage} />
+      <ListPage />
     </div>
   );
 }
