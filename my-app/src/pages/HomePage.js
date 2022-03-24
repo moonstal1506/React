@@ -6,7 +6,7 @@ import Home from '../components/home/Home';
 const HomePage = () => {
   //http요청 ( fetch,axios(다운))
   const [boards, setBoards] = useState([]);
-  const [number, setNumber] = useState(0);
+  const [user, setUser] = useState({});
 
   //빈배열 한번만 실행
   useEffect(() => {
@@ -18,17 +18,13 @@ const HomePage = () => {
     ];
     //빈데이터
     setBoards([...data]);
+    setUser({ id: 1, username: 'zxcv' });
   }, []);
 
   return (
     <div>
       <Header />
-      <Home
-        boards={boards}
-        setBoards={setBoards}
-        number={number}
-        setNumber={setNumber}
-      />
+      <Home boards={boards} setBoards={setBoards} user={user} />
       <Footer />
     </div>
   );
